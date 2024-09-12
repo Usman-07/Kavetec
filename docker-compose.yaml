@@ -1,0 +1,15 @@
+version: '3'                          #version: '3': Defines the version of Docker Compose syntax being used.
+services:                             #This section lists all the containers/services your application needs.
+  web:                                #Defines a service named "web" using the latest Nginx image.
+    image: nginx:latest               
+    ports:
+      - "80:80"
+  database:                           #Defines a service named "database" using the latest MySQL image, and sets environment variables to configure the database.
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db_data:/var/lib/mysql        #The Docker volume that stores your MySQL data
+volumes:
+  db_data:
